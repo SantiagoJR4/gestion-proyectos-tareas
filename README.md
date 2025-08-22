@@ -33,6 +33,7 @@ ng version
 Clonar el repositorio:
 
 git clone https://github.com/SantiagoJR4/gestion-proyectos-tareas.git
+
 cd gestion-proyectos-tareas
 
 
@@ -58,20 +59,7 @@ Usuario: santiago
 
 Contraseña: prueba
 
-📂 Estructura del proyecto
-src/
- ┣ app/
- ┃ ┣ auth/                # Módulo de autenticación
- ┃ ┣ projects/            # Módulo de gestión de proyectos
- ┃ ┣ tasks/               # Módulo de gestión de tareas
- ┃ ┣ shared/              # Componentes y utilidades compartidas
- ┃ ┣ app-routing.module.ts
- ┃ ┣ app.component.ts
- ┃ ┗ app.module.ts
- ┣ assets/
- ┣ environments/
- ┗ main.ts
-
+ <img width="459" height="266" alt="image" src="https://github.com/user-attachments/assets/70c77bed-67fc-4219-b237-3e80906eaa5e" />
 
  👨‍💻 Autor
 
