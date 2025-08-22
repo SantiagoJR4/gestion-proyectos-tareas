@@ -1,57 +1,63 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ErrorDialogPayload, ErrorDialogService } from '../error-dialog.service';
+import { Subscription } from 'rxjs';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-error-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DialogModule, ButtonModule],
   template: `
-    <div class = "error-dialog">
-      <div class="error-body">
-        <h3 class="error-title">{{title}}</h3>
-        <p class="error-message" *ngIf="message">{{message}}</p>
-        <pre *ngIf="detail" class="error-detail">{{detail}}</pre>
+    <p-dialog
+      header = "{{payload?.title || 'Error'}}"
+      [(visible)]="visible"
+      [modal]="true"
+      [closable]="true"
+      [style]="{width:'520px'}"
+      (onHide)="close()"
+      >
+
+      <div *ngIf="payload">
+        <p style="margin:0 0.5rem 0.5rem 0;"></p>
+        {{payload.message}}
       </div>
-      <div class="error-actions" style="text-align:right; margin-top: 1rem;">
-        <button pButton type="button" label="Cerrar" class="p-button-text" (click)="close()"></button>
-      </div>
-    </div>
+
+      <pre *ngIf="payload?.detail" style="background: #f7f7f7; padding:0.6rem; border-radius:6px;">
+        {{payload?.detail}}
+      </pre>
+
+      <ng-template pTemplate="footer">
+        <button pButton type="button" label="Cerrar" (click)="close()"></button>
+      </ng-template>
+      
+    </p-dialog>
   `,
   styles: [`
-    .error-title {
-      margin: 0 0 6px 0;
-      font-size: 1.05rem;
-      color: #c62828;
-    }
-    .error-message {
-      margin:0;
-      color: #333;
-    }
-    .error-detail {
-      margin-top:8px;
-      background: #f7f7f7;
-      padding: 8px;
-      border-radius: 6px;
-      font-size:0.9rem;
-      color:#333;
-    }
+    :host{display:block;}
   `]
 })
 export class ErrorDialogComponent {
-  title = 'Error';
-  message:string | null = null;
-  detail:string | null = null;
+  visible = false;
+  payload : ErrorDialogPayload | null = null;
+  private sub: Subscription;
 
-  constructor(public ref:DynamicDialogRef, public config:DynamicDialogConfig) {
-    const data = config?.data ?? {};
-    this.title = data.title || this.title;
-    this.message = data.message || null;
-    this.detail = data.detail || null;
+  constructor(private svc: ErrorDialogService) {
+    this.sub = this.svc.dialog$.subscribe(p => {
+      this.payload = p;
+      this.visible = !!p;
+    })
   }
 
   close(){
-    this.ref.close();
+    this.visible = false;
+    setTimeout(() => this.svc.close(), 200);
+  }
+
+  ngOnDestroy() : void{
+    this.sub.unsubscribe();
   }
 
 }

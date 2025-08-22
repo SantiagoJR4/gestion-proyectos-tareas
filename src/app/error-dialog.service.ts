@@ -1,27 +1,36 @@
 import { Injectable } from '@angular/core';
-import { DialogService, DynamicDialogConfig} from 'primeng/dynamicdialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { BehaviorSubject } from 'rxjs';
+
+export interface ErrorDialogPayload{
+  title:string;
+  message:string;
+  detail?: string | null;
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ErrorDialogService {
 
-  constructor(private dialog: DialogService) { }
+  private _dialog$ = new BehaviorSubject<ErrorDialogPayload | null>(null);
+  dialog$ = this._dialog$.asObservable();
+
+  constructor() { }
 
   open(title: string, message: string , detail?: string) {
     try{
-      const config : DynamicDialogConfig = {
-      header: title,
-      data: { title, message, detail },
-      closable: true,
-      width: '480px',
-      baseZIndex: 10000
-    };
-      this.dialog.open(ErrorDialogComponent as any, config);
+      this._dialog$.next({
+      title, message, detail:detail ?? null
+    });
     } catch(e){
       console.error('ErrorDialogService.open', e);
       alert('Error al abrir el diálogo de error. Por favor, inténtelo de nuevo más tarde.');
     }
+  }
+
+  close(){
+    this._dialog$.next(null);
   }
 }
