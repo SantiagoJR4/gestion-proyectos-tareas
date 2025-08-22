@@ -1,0 +1,21 @@
+.wrap{ padding: 1rem;}
+
+.header-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:1rem;
+}
+
+.center{
+    display: grid;
+    place-items: center;
+    height: 40vh;
+}
+
+.grid{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}

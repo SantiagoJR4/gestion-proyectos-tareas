@@ -1,0 +1,15 @@
+.app-title{
+    margin:0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.username{
+    margin-right: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color, #333);
+}
+
+.p-toolbar .p-toolbar-group-right > *{
+    margin-left: 0.5rem;
+}

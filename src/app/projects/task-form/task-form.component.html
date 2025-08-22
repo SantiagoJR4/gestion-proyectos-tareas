@@ -1,0 +1,26 @@
+<p-dialog 
+    header="{{initial ? 'Editar Tarea' : 'Nueva Tarea'}}"
+    [(visible)]="visible" 
+    [modal]="true" 
+    [closable]="true" 
+    (onHide)="onClose()" 
+    [style]="{width: '600px'}">
+
+    <form class="task-form" [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="p-field">
+            <label for="title">Titulo *</label>
+            <input pInputText id="title" formControlName="title" style="width: 100%;" >
+            <small *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="p-error">El título es obligatorio</small>
+        </div>
+        <div class="p-field" style="margin-top: 1rem;">
+            <p-checkbox formControlName="completed" binary="true" inputId="completed"></p-checkbox>
+            <label for="completed">
+                {{form.get('completed')?.value ? 'Completada' : 'No completada'}}
+            </label>
+        </div>
+        <div class="p-dialog-footer" style="margin-top: 1.5rem;">
+            <button pButton type="submit" label="Guardar" [disabled]="form.invalid"></button>
+            <button pButton type="button" label="Cancelar" class="p-button-text" (click)="onClose()"></button>
+        </div>
+    </form>
+</p-dialog>

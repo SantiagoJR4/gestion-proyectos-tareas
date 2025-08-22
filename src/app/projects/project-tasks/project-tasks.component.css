@@ -1,0 +1,28 @@
+.wrap{padding: 1rem;}
+
+.center{
+    display: grid;
+    place-items: center;
+    height: 40hv;
+}
+
+.tasks{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    margin-top: 1rem;
+}
+
+.header-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:1rem;
+}
+
+.tasks-footer{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}

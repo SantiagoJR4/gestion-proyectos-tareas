@@ -1,0 +1,40 @@
+<p-confirmDialog></p-confirmDialog>
+
+<div class="wrap">
+    <h2>Proyectos</h2>
+    <div>
+        <button pButton label="Crear Proyecto" (click)="openCreate()"></button>
+    </div>
+    <div *ngIf="loading" class="center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
+    <p *ngIf="error" class="p-error">{{error}}</p>
+    
+    <div class="grid" *ngIf="!loading && !error">
+        <p-card *ngFor="let p of projects" [header]="p.title" [subheader]="'Proyecto #' + p.id">
+            <p>{{p.description}}</p>
+            <small *ngIf="p.owner">Responsable: {{p.owner}}</small>
+
+            <ng-template pTemplate="footer">
+                <button pButton type="button"
+                    label="Ver tareas" 
+                    class="p-button-text" 
+                    (click)="goToTasks(p.id)">
+                </button>
+                <button pButton type="button" 
+                    label="Editar" 
+                    class="p-button-text" 
+                    (click)="openEdit(p)">
+                </button>
+                <button pButton type="button" 
+                    label="Eliminar" 
+                    class="p-button-text p-button-danger" 
+                    (click)="confirmDelete(p)">
+                </button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
+
+<app-project-form [visible]="formVisible" [initial]="editing" (close)="formVisible=false" (save)="onSaveProject($event)"></app-project-form>

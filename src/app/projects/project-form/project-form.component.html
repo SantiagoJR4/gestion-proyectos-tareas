@@ -1,0 +1,24 @@
+<p-dialog 
+    header="{{initial ? 'Editar Proyecto' : 'Nuevo Proyecto'}}" 
+    [(visible)]="visible" 
+    [modal]="true" 
+    [closable]="true" 
+    (onHide)="onClose()"
+    [style]="{width: '600px'}">
+
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="p-field" style="margin-bottom: 1rem;">
+            <label for="title">Titulo *</label>
+            <input pInputText id="title" formControlName="title" style="width: 100%;">
+            <small *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="p-error">El título es obligatorio</small>
+        </div>
+        <div class="p-field" style="margin-bottom: 1rem;">
+            <label for="description">Descripción</label>
+            <input pInputText id="description" formControlName="description" style="width: 100%;">
+        </div>
+        <div class="p-dialog-footer" style="margin-top: 1.5rem;">
+            <button pButton type="submit" label="Guardar" [disabled]="form.invalid"></button>
+            <button pButton type="button" label="Cancelar" class="p-button-text" (click)="onClose()"></button>
+        </div>
+    </form>
+</p-dialog>

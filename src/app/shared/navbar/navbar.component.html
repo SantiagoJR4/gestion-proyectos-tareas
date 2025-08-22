@@ -1,0 +1,24 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <h1>Gestión de Proyectos</h1>
+        <a pButton type="button"
+            label="Inicio"
+            class="p-button-text"
+            [routerLink]="['/projects']">
+        </a>
+    </div>
+    <div class="p-toolbar-group-right">
+        <ng-container *ngIf="(user$ | async) as user; else showLogin">
+            <span class="username">Bienvenido, {{user.username}}</span>
+            <button pButton type="button" icon="pi pi-sign-out" 
+                label="Cerrar Sesión" class="p-button-text" (click)="logout()">
+            </button>
+        </ng-container>
+        <ng-template #showLogin>
+            <a pButton type="button"
+                label="Iniciar Sesión" class="p-button-text" 
+                [routerLink]="['/auth/login']">
+            </a>
+        </ng-template>
+    </div>
+</p-toolbar>

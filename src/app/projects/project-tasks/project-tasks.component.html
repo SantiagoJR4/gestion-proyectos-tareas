@@ -1,0 +1,29 @@
+<p-confirmDialog></p-confirmDialog>
+
+<div class="wrap">
+    <div class="header-row">
+        <h2>Tareas del proyecto #{{projectId}}</h2>
+        <button pButton label="Nueva tarea" (click)="openCreate()"></button>
+        <button pButton type="button" label="Volver" (click)="goHome()" class="p-button-text"></button>
+    </div>
+
+    <div *ngIf="loading" class="center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
+    <p *ngIf="error" class="p-error">{{error}}</p>
+
+    <div class="tasks" *ngIf="!loading && !error">
+        <p-card *ngFor="let t of tasks" [header]="'Tarea #' + t.id" [subheader]="statusLabel(t)">
+            <p>{{t.title}}</p>
+            <p>{{t.completed ? 'Completada' : 'No completada'}}</p>
+
+            <ng-template pTemplate="footer">
+                <button pButton type="button" label="Editar" (click)="openEdit(t)"></button>
+                <button pButton type="button" label="Eliminar" class="p-button-danger" (click)="confirmDelete(t)"></button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
+
+<app-task-form [visible]="showForm" [initial]="editing" [projectId]="projectId" (close)="showForm=false" (save)="onSaveTask($event)"></app-task-form>

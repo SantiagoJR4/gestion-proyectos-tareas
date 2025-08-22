@@ -1,0 +1,49 @@
+<div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-card" novalidate>
+        <div class="p-field">
+           <p-floatLabel>
+               <input id="username" 
+                    pInputText 
+                    formControlName="username" 
+                    required 
+                    autofocus
+                    autocomplete="username"
+                    aira-label="Usuario">
+               <label for="username">Usuario</label>
+           </p-floatLabel>
+           <small *ngIf="validInput('username')" class="p-error" role="alert">
+               Usuario requerido
+           </small>
+        </div>
+    
+        <div class="p-field">
+           <p-floatLabel>
+               <p-password id="password" 
+                        formControlName="password" 
+                        [feedback]="false"
+                        promptLabel="Ingrese Contraseña"
+                        autocomplete="current-password" 
+                        ariaLabel="Contraseña"/>
+               <label for="password">Contraseña</label>
+           </p-floatLabel>
+           <small *ngIf="validInput('password')" class="p-error" role="alert">
+               Contraseña requerida
+           </small>
+        </div>
+    
+        <div class="p-field">
+            <p-button label="Iniciar Sesión"
+                icon="pi pi-sign-in" 
+                type="submit" 
+                [disabled]="loginForm.invalid || loading"
+                [loading]="loading" 
+                class="p-button-raised p-button-rounded">
+            </p-button>
+        </div>
+       
+        <div *ngIf="error" class="p-error" aria-live="polite" style="margin-top:0.5rem">
+           {{error}}
+        </div>
+       
+    </form>
+</div>
