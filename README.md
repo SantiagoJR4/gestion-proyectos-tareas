@@ -1,27 +1,66 @@
-# GestionProyectosTareas
+# 📝 Gestor de Proyectos y Tareas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+Aplicación en **Angular** para gestionar proyectos y tareas, con autenticación, protección de rutas, manejo de errores HTTP y uso de **PrimeNG** para la interfaz de usuario.  
 
-## Development server
+🔗 Repositorio en GitHub: [SantiagoJR4/gestion-proyectos-tareas](https://github.com/SantiagoJR4/gestion-proyectos-tareas)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Tecnologías usadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Angular CLI](https://angular.io/)  
+- [PrimeNG](https://primeng.org/)  
+- [TypeScript](https://www.typescriptlang.org/)  
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📦 Requisitos previos
 
-## Running unit tests
+Asegúrate de tener instalado en tu equipo:  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Node.js](https://nodejs.org/) v18 o superior  
+- [Angular CLI](https://angular.io/cli)  
 
-## Running end-to-end tests
+Verifica con:  
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+node -v
+ng version
+```
 
-## Further help
+⚙️ Instalación
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Clonar el repositorio:
+
+git clone https://github.com/SantiagoJR4/gestion-proyectos-tareas.git
+
+cd gestion-proyectos-tareas
+
+
+Instalar dependencias:
+
+npm install
+
+
+Ejecutar la aplicación en modo desarrollo:
+
+ng serve
+
+
+Abrir en el navegador:
+
+http://localhost:4200
+
+🔑 Credenciales de acceso
+
+Para ingresar a la aplicación utiliza:
+
+Usuario: santiago
+
+Contraseña: prueba
+
+ <img width="459" height="266" alt="image" src="https://github.com/user-attachments/assets/70c77bed-67fc-4219-b237-3e80906eaa5e" />
+
+ 👨‍💻 Autor
+
+Proyecto desarrollado por Santiago Rosero ✨
